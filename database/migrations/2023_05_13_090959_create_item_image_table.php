@@ -15,7 +15,10 @@ class CreateItemImageTable extends Migration
     {
         Schema::create('item_image', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('image_id');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

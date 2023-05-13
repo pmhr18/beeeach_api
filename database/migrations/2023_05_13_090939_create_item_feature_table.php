@@ -15,7 +15,10 @@ class CreateItemFeatureTable extends Migration
     {
         Schema::create('item_feature', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('feature_id');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

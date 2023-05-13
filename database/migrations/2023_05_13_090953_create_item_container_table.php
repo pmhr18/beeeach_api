@@ -15,7 +15,10 @@ class CreateItemContainerTable extends Migration
     {
         Schema::create('item_container', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('container_id');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

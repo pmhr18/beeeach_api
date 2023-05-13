@@ -15,7 +15,7 @@ class CreateTastesTable extends Migration
     {
         Schema::create('tastes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('taste', 20);
         });
     }
 
