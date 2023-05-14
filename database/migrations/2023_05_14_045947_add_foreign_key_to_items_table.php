@@ -14,7 +14,12 @@ class AddForeignKeyToItemsTable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            //
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('prefecture_id')->references('id')->on('prefectures');
+            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->foreign('color_id')->references('id')->on('colors');
+            $table->foreign('abv_id')->references('id')->on('abvs');
         });
     }
 
@@ -26,7 +31,12 @@ class AddForeignKeyToItemsTable extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-            //
+            $table->dropForeign('items_company_id_foreign');
+            $table->dropForeign('items_country_id_foreign');
+            $table->dropForeign('items_prefecture_id_foreign');
+            $table->dropForeign('items_genre_id_foreign');
+            $table->dropForeign('items_color_id_foreign');
+            $table->dropForeign('items_abv_id_foreign');
         });
     }
 }

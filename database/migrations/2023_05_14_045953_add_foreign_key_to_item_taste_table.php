@@ -14,7 +14,8 @@ class AddForeignKeyToItemTasteTable extends Migration
     public function up()
     {
         Schema::table('item_taste', function (Blueprint $table) {
-            //
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('taste_id')->references('id')->on('tastes');
         });
     }
 
@@ -26,7 +27,8 @@ class AddForeignKeyToItemTasteTable extends Migration
     public function down()
     {
         Schema::table('item_taste', function (Blueprint $table) {
-            //
+            $table->dropForeign('item_taste_item_id_foreign');
+            $table->dropForeign('item_taste_taste_id_foreign');
         });
     }
 }

@@ -14,7 +14,8 @@ class AddForeignKeyToItemFeatureTable extends Migration
     public function up()
     {
         Schema::table('item_feature', function (Blueprint $table) {
-            //
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('feature_id')->references('id')->on('features');
         });
     }
 
@@ -26,7 +27,8 @@ class AddForeignKeyToItemFeatureTable extends Migration
     public function down()
     {
         Schema::table('item_feature', function (Blueprint $table) {
-            //
+            $table->dropForeign('item_feature_item_id_foreign');
+            $table->dropForeign('item_feature_feature_id_foreign');
         });
     }
 }

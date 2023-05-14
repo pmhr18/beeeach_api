@@ -14,7 +14,8 @@ class AddForeignKeyToItemContainerTable extends Migration
     public function up()
     {
         Schema::table('item_container', function (Blueprint $table) {
-            //
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('container_id')->references('id')->on('containers');
         });
     }
 
@@ -26,7 +27,8 @@ class AddForeignKeyToItemContainerTable extends Migration
     public function down()
     {
         Schema::table('item_container', function (Blueprint $table) {
-            //
+            $table->dropForeign('item_container_item_id_foreign');
+            $table->dropForeign('item_container_container_id_foreign');
         });
     }
 }
