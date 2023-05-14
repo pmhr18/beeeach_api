@@ -15,7 +15,7 @@ class CreateFeaturesTable extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->string('feature', 20);
+            $table->string('feature', 20)->nullable(false);
         });
     }
 

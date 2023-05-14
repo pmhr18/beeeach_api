@@ -15,7 +15,7 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
+            $table->string('name', 100)->nullable(false);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('country_id');
@@ -23,7 +23,7 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('genre_id');
             $table->unsignedBigInteger('color_id');
             $table->unsignedBigInteger('abv_id');
-            $table->text('main_image_url');
+            $table->text('main_image_url')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

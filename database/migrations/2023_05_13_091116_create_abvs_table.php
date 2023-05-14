@@ -15,7 +15,7 @@ class CreateAbvsTable extends Migration
     {
         Schema::create('abvs', function (Blueprint $table) {
             $table->id();
-            $table->int('abv');
+            $table->int('abv')->nullable(false);
         });
     }
 

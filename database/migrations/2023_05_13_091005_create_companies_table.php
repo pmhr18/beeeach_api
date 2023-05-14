@@ -15,7 +15,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('country', 30);
+            $table->string('country', 30)->nullable(false);
         });
     }
 
