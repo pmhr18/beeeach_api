@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
-    use HasFactory;
+    /**
+     * リレーション定義
+     *
+     * @return void
+     */
+    public function item()
+    {
+        return $this->hasOne(Item::class);
+    }
 }
