@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class AddForeignKeyToCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('country', 50)->nullable(false);
-            $table->unsignedBigInteger('area_id');
+        Schema::table('countries', function (Blueprint $table) {
+            $table->foreign('area_id')->references('id')->on('areas');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::table('countries', function (Blueprint $table) {
+            $table->dropForeign('countries_area_id_foreign');
+        });
     }
 }
