@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+## Environment of Development
+
+- PHP: 8.1.9
+- Laravel: 8.83.27
+- mysql: 8.0.28
+- Node: 14.2 alpine
+- Nginx: 1.18 alpine
+- Docker
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
