@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class StoreInfo extends Model
 {
     /**
      * リレーション定義
      *
      * @return void
      */
-    public function prefecture()
+    public function breweries()
     {
-        return $this->hasMany(Prefecture::class);
+        return $this->belongsToMany(Item::class, 'brewery_store_info');
     }
 }

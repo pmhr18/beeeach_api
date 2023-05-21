@@ -15,4 +15,12 @@ class Prefecture extends Model
     {
         return $this->hasOne(Item::class);
     }
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

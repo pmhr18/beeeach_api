@@ -15,4 +15,12 @@ class Country extends Model
     {
         return $this->hasOne(Item::class);
     }
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+    public function prefecture()
+    {
+        return $this->hasMany(Prefecture::class);
+    }
 }
