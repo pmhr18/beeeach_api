@@ -15,7 +15,7 @@ class CreatePrefecturesTable extends Migration
     {
         Schema::create('prefectures', function (Blueprint $table) {
             $table->id();
-            $table->string('prefecture', 10)->nullable(false);
+            $table->string('name', 10)->nullable(false);
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('region_id');
         });

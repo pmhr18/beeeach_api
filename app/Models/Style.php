@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Style extends Model
 {
+    /**
+     * リレーション定義
+     *
+     * @return void
+     */
     public function item()
     {
         return $this->hasOne(Item::class);

@@ -15,22 +15,16 @@ class AbvSeeder extends Seeder
     public function run()
     {
         DB::table('abvs')->insert([
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => ''],
-            ['abv' => '']
+            ['num' => '1%未満'],
+            ['num' => '2%'],
+            ['num' => '3%'],
+            ['num' => '4%'],
+            ['num' => '5%'],
+            ['num' => '6%'],
+            ['num' => '7%'],
+            ['num' => '8%'],
+            ['num' => '9%'],
+            ['num' => '10%以上'],
         ]);
     }
 }

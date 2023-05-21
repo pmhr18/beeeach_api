@@ -15,7 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('country', 50)->nullable(false);
+            $table->string('name', 50)->nullable(false);
             $table->unsignedBigInteger('area_id');
         });
     }

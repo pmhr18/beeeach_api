@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateBreweriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('breweries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name', 50)->nullable(false);
-            $table->unsignedBigInteger('brewery_id');
+            $table->string('name', 100)->nullable(false);
+            $table->string('formal_name', 100)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->string('access', 100)->nullable();
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('prefecture_id')->nullable();
-            $table->unsignedBigInteger('style_id')->nullable();
-            $table->unsignedBigInteger('color_id')->nullable();
-            $table->unsignedBigInteger('abv_id')->nullable();
             $table->text('main_image_url')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
@@ -36,6 +35,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('breweries');
     }
 }

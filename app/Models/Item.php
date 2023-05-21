@@ -32,9 +32,9 @@ class Item extends Model
         return $this->belongsToMany(Image::class, 'item_image');
     }
 
-    public function company()
+    public function brewery()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Brewery::class);
     }
 
     public function country()
@@ -47,9 +47,9 @@ class Item extends Model
         return $this->belongsTo(Prefecture::class);
     }
 
-    public function genre()
+    public function style()
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(Style::class);
     }
 
     public function color()

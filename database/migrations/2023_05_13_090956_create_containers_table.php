@@ -15,7 +15,7 @@ class CreateContainersTable extends Migration
     {
         Schema::create('containers', function (Blueprint $table) {
             $table->id();
-            $table->string('container', 20)->nullable(false);
+            $table->string('name', 20)->nullable(false);
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeyToCompaniesTable extends Migration
+class AddForeignKeyToBreweriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddForeignKeyToCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::table('companies', function (Blueprint $table) {
+        Schema::table('breweries', function (Blueprint $table) {
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('prefecture_id')->references('id')->on('prefectures');
         });
@@ -26,9 +26,9 @@ class AddForeignKeyToCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::table('companies', function (Blueprint $table) {
-            $table->dropForeign('companies_country_id_foreign');
-            $table->dropForeign('companies_prefecture_id_foreign');
+        Schema::table('breweries', function (Blueprint $table) {
+            $table->dropForeign('breweries_country_id_foreign');
+            $table->dropForeign('breweries_prefecture_id_foreign');
         });
     }
 }

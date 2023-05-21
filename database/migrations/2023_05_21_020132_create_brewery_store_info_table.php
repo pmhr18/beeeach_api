@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemFeatureTable extends Migration
+class CreateBreweryStoreInfoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateItemFeatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_feature', function (Blueprint $table) {
+        Schema::create('brewery_store_info', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('feature_id');
+            $table->unsignedBigInteger('brewery_id');
+            $table->unsignedBigInteger('store_info_id');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });
@@ -29,6 +29,6 @@ class CreateItemFeatureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_feature');
+        Schema::dropIfExists('brewery_store_info');
     }
 }
