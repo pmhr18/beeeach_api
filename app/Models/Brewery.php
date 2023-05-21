@@ -15,6 +15,14 @@ class Brewery extends Model
     {
         return $this->hasMany(Item::class);
     }
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+    public function prefecture()
+    {
+        return $this->belongsTo(Prefecture::class);
+    }
 
     // 中間テーブル経由のリレーション
     public function store_info()

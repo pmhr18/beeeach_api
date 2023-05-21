@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AbvSeeder::class);
         $this->call(StoreInfoSeeder::class);
         $this->call(BrewerySeeder::class);
+        $this->call(TypeSeeder::class);
     }
 }

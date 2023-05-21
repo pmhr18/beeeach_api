@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('brewery_id');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('prefecture_id')->nullable();
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->unsignedBigInteger('style_id')->nullable();
             $table->unsignedBigInteger('color_id')->nullable();
             $table->unsignedBigInteger('abv_id')->nullable();

@@ -15,6 +15,10 @@ class Prefecture extends Model
     {
         return $this->hasOne(Item::class);
     }
+        public function brewery()
+    {
+        return $this->hasOne(Brewery::class);
+    }
     public function region()
     {
         return $this->belongsTo(Region::class);

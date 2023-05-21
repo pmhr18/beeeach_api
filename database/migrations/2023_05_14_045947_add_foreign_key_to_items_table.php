@@ -17,6 +17,7 @@ class AddForeignKeyToItemsTable extends Migration
             $table->foreign('brewery_id')->references('id')->on('breweries');
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('prefecture_id')->references('id')->on('prefectures');
+            $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('style_id')->references('id')->on('styles');
             $table->foreign('color_id')->references('id')->on('colors');
             $table->foreign('abv_id')->references('id')->on('abvs');
@@ -34,6 +35,7 @@ class AddForeignKeyToItemsTable extends Migration
             $table->dropForeign('items_brewery_id_foreign');
             $table->dropForeign('items_country_id_foreign');
             $table->dropForeign('items_prefecture_id_foreign');
+            $table->dropForeign('items_type_id_foreign');
             $table->dropForeign('items_style_id_foreign');
             $table->dropForeign('items_color_id_foreign');
             $table->dropForeign('items_abv_id_foreign');

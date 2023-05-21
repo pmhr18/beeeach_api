@@ -15,6 +15,10 @@ class Country extends Model
     {
         return $this->hasOne(Item::class);
     }
+    public function brewery()
+    {
+        return $this->hasOne(Brewery::class);
+    }
     public function area()
     {
         return $this->belongsTo(Area::class);
