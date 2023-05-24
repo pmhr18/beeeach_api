@@ -13,10 +13,14 @@ class BreweriesController extends Controller
     }
     public function show($id)
     {
-        $record = Brewery::find($id);
+        $record = Brewery::with('country', 'prefecture')->find($id)->toJson();
         // $country = Brewery::with('country')->find($id);
         // $prefecture = Brewery::with('prefecture')->find($id);
-        DD($record);
+        // DD($record);
         return $record;
+    }
+    public function store(Request $request)
+    {
+        return $request;
     }
 }
