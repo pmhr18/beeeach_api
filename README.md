@@ -15,7 +15,6 @@
 - mysql: 8.0.28
 - Node: 14.2 alpine
 - Nginx: 1.18 alpine
-- Docker
 
 ## About Laravel
 
