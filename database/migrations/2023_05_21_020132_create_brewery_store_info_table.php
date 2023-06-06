@@ -17,7 +17,7 @@ class CreateBreweryStoreInfoTable extends Migration
             $table->id();
             $table->unsignedBigInteger('brewery_id');
             $table->unsignedBigInteger('store_info_id');
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->useCurrent();;
             $table->timestamp('updated_at')->nullable();
         });
     }

@@ -15,15 +15,15 @@ class ColorSeeder extends Seeder
     public function run()
     {
         DB::table('colors')->insert([
-            ['color' => 'ライトストロー'],
-            ['color' => 'ペールイエロー'],
-            ['color' => 'ゴールデン'],
-            ['color' => 'アンバー'],
-            ['color' => 'レッド'],
-            ['color' => 'ブラウン'],
-            ['color' => 'ダークブラウン'],
-            ['color' => 'ブラック'],
-            ['color' => 'その他'],
+            ['name' => 'ライトストロー'],
+            ['name' => 'ペールイエロー'],
+            ['name' => 'ゴールデン'],
+            ['name' => 'アンバー'],
+            ['name' => 'レッド'],
+            ['name' => 'ブラウン'],
+            ['name' => 'ダークブラウン'],
+            ['name' => 'ブラック'],
+            ['name' => 'その他'],
         ]);
     }
 }

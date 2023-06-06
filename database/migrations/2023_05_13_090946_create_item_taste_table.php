@@ -17,7 +17,7 @@ class CreateItemTasteTable extends Migration
             $table->id();
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('taste_id');
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });
     }

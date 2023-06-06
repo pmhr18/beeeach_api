@@ -24,7 +24,7 @@ class Item extends Model
     {
         return $this->belongsTo(Prefecture::class);
     }
-    public function Type()
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }
