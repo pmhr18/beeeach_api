@@ -15,7 +15,7 @@ class CreateStoreInfoTable extends Migration
     {
         Schema::create('store_info', function (Blueprint $table) {
             $table->id();
-            $table->string('store_info', 30)->nullable(false);
+            $table->string('name', 30)->nullable(false);
         });
     }
 

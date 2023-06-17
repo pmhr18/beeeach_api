@@ -78,7 +78,6 @@ class ItemsController extends Controller
         $item->type_id = $typeId;
         $item->main_image_url = null;
         $item->save();
-        $lastInsertedId = $item->item_id;
 
         // 中間テーブルへレコード追加
         $item->tastes()->sync($tasteIds);

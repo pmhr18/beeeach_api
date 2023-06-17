@@ -19,15 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // items
+// Route::resource('items', 'ItemsController');
 Route::get('items/create', [App\Http\Controllers\ItemsController::class, 'create']);
 Route::post('items', [App\Http\Controllers\ItemsController::class, 'store']);
 Route::post('items/search', [App\Http\Controllers\ItemsController::class, 'search']);
 Route::get('items/{id}', [App\Http\Controllers\ItemsController::class, 'show']);
 
 // breweries
-Route::resource('breweries', 'BreweriesController');
-
-// Route::get('breweries/create', [App\Http\Controllers\BreweriesController::class, 'create']);
-// Route::post('breweries', [App\Http\Controllers\BreweriesController::class, 'store']);
-// Route::post('breweries/search', [App\Http\Controllers\BreweriesController::class, 'search']);
-// Route::get('breweries/{id}', [App\Http\Controllers\BreweriesController::class, 'show']);
+Route::get('breweries/create', [App\Http\Controllers\BreweriesController::class, 'create']);
+Route::post('breweries', [App\Http\Controllers\BreweriesController::class, 'store']);
+Route::post('breweries/search', [App\Http\Controllers\BreweriesController::class, 'search']);
+Route::get('breweries/{id}', [App\Http\Controllers\BreweriesController::class, 'show']);

@@ -15,10 +15,10 @@ class StoreInfoSeeder extends Seeder
     public function run()
     {
         DB::table('store_info')->insert([
-            ['store_info' => '試飲できる'],
-            ['store_info' => 'レストランがある'],
-            ['store_info' => 'ショップがある'],
-            ['store_info' => '工場見学ができる'],
+            ['name' => '試飲できる'],
+            ['name' => 'レストランがある'],
+            ['name' => 'ショップがある'],
+            ['name' => '工場見学ができる'],
         ]);
     }
 }
