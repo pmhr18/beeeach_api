@@ -3,35 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\ShowBreweriesResource;
+use App\Services\BreweryService;
 use App\Models\Brewery;
 use App\Models\StoreInfo;
-use App\Models\Item;
 use App\Models\Country;
 use App\Models\Prefecture;
 
 class BreweriesController extends Controller
 {
-    public function create()
+    /**
+     *  サービスクラスを関連付ける
+     *
+     * @var [type]
+     */
+    private $breweryService;
+    
+    public function __construct(BreweryService $breweryService)
     {
-        $country = Country::all();
-        $prefecture = Prefecture::all();
-        $storeInfo = StoreInfo::all();
-
-        return response()->json([
-            'storeInfo' => $storeInfo,
-            'country' => $country,
-            'prefecture' => $prefecture,
-        ]);
-
-        // $createBreweries[] = [
-        //     'country' => $country,
-        //     'prefecture' => $prefecture,
-        //     'storeInfo' => $storeInfo,
-        // ];
-
-        // return response()->json($createBreweries);
+        $this->breweryService = $breweryService;
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
+    /**
+     * 初期選択データを取得する
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $initialData = $this->breweryService->getInitialData();
+        return response()->json($initialData);
+    }
+
+    /**
+     * ブルワリー情報を登録する
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $breweryName = $request->input('breweryName');
@@ -74,17 +93,56 @@ class BreweriesController extends Controller
         ]); 
     }
 
+    /**
+     * 特定のブルワリー情報を取得する
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        $breweryId = $id;
+        $brewery = Brewery::with([
+            'country',
+            'prefecture',
+            'item',
+            // 'store_info',
+            // 'items',
+        ])->findOrFail($id);
 
-        $record = Brewery::with('country', 'prefecture')
-            ->find($id);
-            // ->toJson();
-        $storeInfo = $record->store_info()->get();
-        // $country = Brewery::with('country')->find($id);
-        // $prefecture = Brewery::with('prefecture')->find($id);
-        DD($storeInfo);
-        return $record;
+        return new ShowBreweriesResource($brewery);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\ShowItemsResource;
+use App\Services\ItemService;
 use App\Models\Item;
 use App\Models\Brewery;
 use App\Models\Country;
@@ -16,31 +18,45 @@ use App\Models\Type;
 
 class ItemsController extends Controller
 {
-    public function create()
-    {
-        $brewery = Brewery::all();
-        $country = Country::all();
-        $prefecture = Prefecture::all();
-        $taste = Taste::all();
-        $container = Container::all();
-        $style = Style::all();
-        $color = Color::all();
-        $abv = Abv::all();
-        $type = Type::all();
+    /**
+     *  サービスクラスを関連付ける
+     *
+     * @var [type]
+     */
+    private $itemService;
 
-        return response()->json([
-            'brewery' => $brewery,
-            'country' => $country,
-            'prefecture' => $prefecture,
-            'taste' => $taste,
-            'container' => $container,
-            'style' => $style,
-            'color' => $color,
-            'abv' => $abv,
-            'type' => $type
-        ]);
+    public function __construct(ItemService $itemService)
+    {
+        $this->itemService = $itemService;
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
+    /**
+     * 初期選択データを取得する
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $initialData = $this->itemService->getInitialData();
+        return response()->json($initialData);
+    }
+
+    /**
+     * ビール情報を登録する
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $itemName = $request->input('itemName');
@@ -95,175 +111,63 @@ class ItemsController extends Controller
             'color' => $color,
             'abv' => $abv,
             'type' => $type
-        ]); 
+        ]);
     }
 
-    public function search(Request $request)
-    {
-        // アイテムを抽出するクエリビルダを作成
-        $query = Item::query();
-        
-        //検索条件取得
-        $fetchKeywordValue = $request->input('inputKeyword');
-
-        // inputKeyword が渡されたらキーワード検索、そうでなければ条件検索を実行
-        if (!empty($fetchKeywordValue)) {
-            // キーワード検索
-            // 検索文字列全体の前後にある空白を除去
-            $keyword_remove_space = preg_replace( '/\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z/u', '', $fetchKeywordValue);
-            // 検索文字列内の半角スペースを全角スペースにする
-            $keyword_unify_space =  mb_convert_kana($keyword_remove_space, 's');
-            // 全角空白で文字を区切り配列へ
-            $searchTerms = preg_split('/[\s]+/', $keyword_unify_space);
-
-            foreach ($searchTerms as $searchTerm) {
-                $query->where('name', 'like', "%{$searchTerm}%");
-                $query->orWhereHas('brewery', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('country', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('prefecture', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('style', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('color', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('abv', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orWhereHas('type', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orwhereHas('tastes', function ($subQuery) use ($searchTerm) {
-                    $subQuery->where('name', 'like', "%$searchTerm%");
-                });
-                $query->orwhereHas('containers', function ($subQuery) use ($searchTerm) {
-                    $subQuery->where('name', 'like', "%$searchTerm%");
-                });
-            }
-
-        } else {
-            // 条件検索
-            $fetchBreweryId = $request->input('breweryId');
-            $fetchCountryId = $request->input('countryId');
-            $fetchPrefectureId = $request->input('prefectureId');
-            $fetchTasteId = $request->input('tasteId');
-            $fetchContainerId = $request->input('containerId');
-            $fetchStyleId = $request->input('styleId');
-            $fetchColorId = $request->input('colorId');
-            $fetchAbvId = $request->input('abvId');
-            $fetchTypeId = $request->input('typeId');
-
-            // 各条件を組み合わせてクエリを絞り込む
-            if (!empty($fetchBreweryId)) {
-                $query->whereIn('brewery_id', $fetchBreweryId);
-            }
-            if (!empty($fetchCountryId)) {
-                $query->whereIn('country_id', $fetchCountryId);
-            }
-            if (!empty($fetchPrefectureId)) {
-                $query->whereIn('prefecture_id', $fetchPrefectureId);
-            }
-            if (!empty($fetchStyleId)) {
-                $query->whereIn('style_id', $fetchStyleId);
-            }
-            if (!empty($fetchColorId)) {
-                $query->whereIn('color_id', $fetchColorId);
-            }
-            if (!empty($fetchAbvId)) {
-                $query->whereIn('abv_id', $fetchAbvId);
-            }
-            if (!empty($fetchTypeId)) {
-                $query->whereIn('type_id', $fetchTypeId);
-            }
-
-            // アイテムを抽出するクエリビルダを作成
-            // tastesテーブルの条件を絞り込む
-            if (!empty($fetchTasteId)) {
-                $query->whereHas('tastes', function ($subQuery) use ($fetchTasteId) {
-                    $subQuery->whereIn('tastes.id', $fetchTasteId);
-                });
-            }
-            // containersテーブルの条件を絞り込む
-            if (!empty($fetchContainerId)) {
-                $query->whereHas('containers', function ($subQuery) use ($fetchContainerId) {
-                    $subQuery->whereIn('containers.id', $fetchContainerId);
-                });
-            }
-
-        }
-
-        // アイテムのidを取得
-        $itemIds = $query->pluck('id');
-        $buildItems = [];
-    
-        foreach ($itemIds as $itemId) {
-            $item = Item::find($itemId);
-            $itemName = $item->name;
-            $country = Country::find($item->country_id);
-            $prefecture = Prefecture::find($item->prefecture_id);
-            $color = Color::find($item->color_id);
-            $style = Style::find($item->style_id);
-            $abv = Abv::find($item->abv_id);
-            $type = Type::find($item->type_id);
-            $brewery = Brewery::find($item->brewery_id);
-            $tastes = $item->tastes()->get();
-            $containers = $item->containers()->get();
-    
-            $buildItems[] = [
-                'item_id' => $itemId,
-                'item_name' => $itemName,
-                'country' => $country,
-                'prefecture' => $prefecture,
-                'color' => $color,
-                'style' => $style,
-                'abv' => $abv,
-                'type' => $type,
-                'brewery' => $brewery,
-                'tastes' => $tastes,
-                'containers' => $containers,
-            ];
-        }
-    
-        return response()->json($buildItems);
-    }
-
+    /**
+     * 特定のビール情報を取得する
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        // アイテムのidを取得
-        $itemId = $id;
+        $item = Item::with([
+            'country',
+            'prefecture',
+            'color',
+            'style',
+            'abv',
+            'type',
+            'brewery',
+            // 'tastes',
+            // 'containers'
+        ])->findOrFail($id);
         
-        $item = Item::find($itemId);
-        $itemName = $item->name;
-        $country = Country::find($item->country_id);
-        $prefecture = Prefecture::find($item->prefecture_id);
-        $color = Color::find($item->color_id);
-        $style = Style::find($item->style_id);
-        $abv = Abv::find($item->abv_id);
-        $type = Type::find($item->type_id);
-        $brewery = Brewery::find($item->brewery_id);
-        $tastes = $item->tastes()->get();
-        $containers = $item->containers()->get();
+        return new ShowItemsResource($item);
+    }
 
-        $buildItems = [
-            'item_id' => $itemId,
-            'item_name' => $itemName,
-            'country' => $country,
-            'prefecture' => $prefecture,
-            'color' => $color,
-            'style' => $style,
-            'abv' => $abv,
-            'type' => $type,
-            'brewery' => $brewery,
-            'tastes' => $tastes,
-            'containers' => $containers,
-        ];
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-        return response()->json($buildItems);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
