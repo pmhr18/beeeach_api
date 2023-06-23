@@ -1,0 +1,112 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class CountrySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('countries')->insert([
+            ['id' => 1, 'name' => '日本', 'area_id' => 1],
+            ['id' => 2, 'name' => '台湾', 'area_id' => 1],
+            ['id' => 3, 'name' => '韓国', 'area_id' => 1],
+            ['id' => 4, 'name' => '中国', 'area_id' => 1],
+            ['id' => 5, 'name' => 'インド', 'area_id' => 2],
+            ['id' => 6, 'name' => 'カザフスタン', 'area_id' => 2],
+            ['id' => 7, 'name' => 'ベトナム', 'area_id' => 2],
+            ['id' => 8, 'name' => 'タイ', 'area_id' => 2],
+            ['id' => 9, 'name' => 'フィリピン', 'area_id' => 2],
+            ['id' => 10, 'name' => 'インドネシア', 'area_id' => 2],
+            ['id' => 11, 'name' => 'マレーシア', 'area_id' => 2],
+            ['id' => 12, 'name' => 'シンガポール', 'area_id' => 2],
+            ['id' => 13, 'name' => 'カンボジア', 'area_id' => 2],
+            ['id' => 14, 'name' => 'モンゴル', 'area_id' => 2],
+            ['id' => 15, 'name' => 'パキスタン', 'area_id' => 2],
+            ['id' => 16, 'name' => 'バングラデシュ', 'area_id' => 2],
+            ['id' => 17, 'name' => 'スリランカ', 'area_id' => 2],
+            ['id' => 18, 'name' => 'ニュージーランド', 'area_id' => 2],
+            ['id' => 19, 'name' => 'オーストラリア', 'area_id' => 2],
+            ['id' => 20, 'name' => 'モルディブ', 'area_id' => 2],
+            ['id' => 21, 'name' => 'イスラエル', 'area_id' => 3],
+            ['id' => 22, 'name' => 'トルコ', 'area_id' => 3],
+            ['id' => 23, 'name' => 'サウジアラビア', 'area_id' => 3],
+            ['id' => 24, 'name' => 'イラン', 'area_id' => 3],
+            ['id' => 25, 'name' => 'イラク', 'area_id' => 3],
+            ['id' => 26, 'name' => 'エジプト', 'area_id' => 3],
+            ['id' => 27, 'name' => 'ヨルダン', 'area_id' => 3],
+            ['id' => 28, 'name' => 'カタール', 'area_id' => 3],
+            ['id' => 29, 'name' => 'クウェート', 'area_id' => 3],
+            ['id' => 30, 'name' => 'レバノン', 'area_id' => 3],
+            ['id' => 31, 'name' => 'シリア', 'area_id' => 3],
+            ['id' => 32, 'name' => 'アラブ首長国連邦', 'area_id' => 3],
+            ['id' => 33, 'name' => 'バーレーン', 'area_id' => 3, ],
+            ['id' => 34, 'name' => 'オマーン', 'area_id' => 3],
+            ['id' => 35, 'name' => 'ドイツ', 'area_id' => 4],
+            ['id' => 36, 'name' => 'イギリス', 'area_id' => 4],
+            ['id' => 37, 'name' => 'フランス', 'area_id' => 4],
+            ['id' => 38, 'name' => 'イタリア', 'area_id' => 4],
+            ['id' => 39, 'name' => 'スペイン', 'area_id' => 4],
+            ['id' => 40, 'name' => 'オランダ', 'area_id' => 4],
+            ['id' => 41, 'name' => 'ベルギー', 'area_id' => 4],
+            ['id' => 42, 'name' => 'スウェーデン', 'area_id' => 4],
+            ['id' => 43, 'name' => 'ノルウェー', 'area_id' => 4],
+            ['id' => 44, 'name' => 'デンマーク', 'area_id' => 4],
+            ['id' => 45, 'name' => 'フィンランド', 'area_id' => 4],
+            ['id' => 46, 'name' => 'ポーランド', 'area_id' => 4],
+            ['id' => 47, 'name' => 'ポルトガル', 'area_id' => 4],
+            ['id' => 48, 'name' => 'ロシア', 'area_id' => 4],
+            ['id' => 49, 'name' => 'ウクライナ', 'area_id' => 4],
+            ['id' => 50, 'name' => 'ギリシャ', 'area_id' => 4],
+            ['id' => 51, 'name' => 'ハンガリー', 'area_id' => 4],
+            ['id' => 52, 'name' => 'チェコ', 'area_id' => 4],
+            ['id' => 53, 'name' => 'スロバキア', 'area_id' => 4],
+            ['id' => 54, 'name' => 'ルーマニア', 'area_id' => 4],
+            ['id' => 55, 'name' => 'ブルガリア', 'area_id' => 4],
+            ['id' => 56, 'name' => 'オーストリア', 'area_id' => 4],
+            ['id' => 57, 'name' => 'スイス', 'area_id' => 4],
+            ['id' => 58, 'name' => 'クロアチア', 'area_id' => 4],
+            ['id' => 59, 'name' => 'セルビア', 'area_id' => 4],
+            ['id' => 60, 'name' => 'スロベニア', 'area_id' => 4],
+            ['id' => 61, 'name' => 'ラトビア', 'area_id' => 4],
+            ['id' => 62, 'name' => 'リトアニア', 'area_id' => 4],
+            ['id' => 63, 'name' => 'エストニア', 'area_id' => 4],
+            ['id' => 64, 'name' => '南アフリカ', 'area_id' => 5],
+            ['id' => 65, 'name' => 'ナイジェリア', 'area_id' => 5],
+            ['id' => 66, 'name' => 'アンゴラ', 'area_id' => 5],
+            ['id' => 67, 'name' => 'ケニア', 'area_id' => 5],
+            ['id' => 68, 'name' => 'エチオピア', 'area_id' => 5],
+            ['id' => 69, 'name' => 'タンザニア', 'area_id' => 5],
+            ['id' => 70, 'name' => 'カメルーン', 'area_id' => 5],
+            ['id' => 71, 'name' => 'コンゴ民主共和国', 'area_id' => 5],
+            ['id' => 72, 'name' => 'ウガンダ', 'area_id' => 5],
+            ['id' => 73, 'name' => 'ザンビア', 'area_id' => 5],
+            ['id' => 74, 'name' => 'モザンビーク', 'area_id' => 5],
+            ['id' => 75, 'name' => 'ガーナ', 'area_id' => 5],
+            ['id' => 76, 'name' => 'コートジボワール', 'area_id' => 5],
+            ['id' => 77, 'name' => 'ボツワナ', 'area_id' => 5],
+            ['id' => 78, 'name' => 'ジンバブエ', 'area_id' => 5],
+            ['id' => 79, 'name' => 'モーリシャス', 'area_id' => 5],
+            ['id' => 80, 'name' => 'モロッコ', 'area_id' => 5],
+            ['id' => 81, 'name' => 'エジプト', 'area_id' => 5],
+            ['id' => 82, 'name' => 'セネガル', 'area_id' => 5],
+            ['id' => 83, 'name' => 'マダガスカル', 'area_id' => 5],
+            ['id' => 84, 'name' => 'ルワンダ', 'area_id' => 5],
+            ['id' => 85, 'name' => 'タンザニア', 'area_id' => 5],
+            ['id' => 86, 'name' => 'セーシェル', 'area_id' => 5],
+            ['id' => 87, 'name' => 'ガンビア', 'area_id' => 5],
+            ['id' => 88, 'name' => 'レソト', 'area_id' => 5],
+            ['id' => 89, 'name' => 'アメリカ合衆国', 'area_id' => 6],
+            ['id' => 90, 'name' => 'カナダ', 'area_id' => 6],
+            ['id' => 91, 'name' => 'メキシコ', 'area_id' => 6],
+            ['id' => 92, 'name' => 'カリブ', 'area_id' => 6]
+        ]);
+    }
+}
